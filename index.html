@@ -1,79 +1,96 @@
 <!doctype html>
 <html lang="ro">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Stumble Competitive — Prototype</title>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>StumbleGuysRanked — Competitive Hub</title>
 <style>
-:root{--bg:#0b1020;--panel:#141c32;--panel2:#1b2743;--text:#f3f6ff;--muted:#9eaccb;--accent:#8b7cff;--green:#50e3a4;--line:#2b3858}
-*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 20% 0%,#1e2850 0,#0b1020 42%);font-family:Inter,system-ui,Arial,sans-serif;color:var(--text)}
-.wrap{max-width:1120px;margin:auto;padding:24px}.nav{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-bottom:30px}.brand{font-weight:900;font-size:20px;letter-spacing:.3px}.brand span{color:var(--accent)}.pill{border:1px solid var(--line);padding:9px 13px;border-radius:999px;color:var(--muted);font-size:13px}
-.hero{display:grid;grid-template-columns:1.4fr 1fr;gap:18px}.panel{background:linear-gradient(145deg,rgba(27,39,67,.96),rgba(17,25,45,.96));border:1px solid var(--line);border-radius:22px;padding:22px;box-shadow:0 15px 40px #0002}
-h1{font-size:clamp(30px,5vw,48px);line-height:1.05;margin:10px 0 14px}h1 em{font-style:normal;color:var(--accent)}p{color:var(--muted);line-height:1.55;margin-top:0}.eyebrow{text-transform:uppercase;letter-spacing:2px;color:var(--green);font-size:11px;font-weight:800}
-.modes{display:flex;gap:10px;margin:20px 0 14px}.mode{flex:1;border:1px solid var(--line);background:#10182c;color:var(--muted);padding:14px;border-radius:14px;text-align:left;cursor:pointer;font-weight:800}.mode small{display:block;font-weight:500;margin-top:5px;color:var(--muted)}.mode.active{border-color:var(--accent);background:#292651;color:white;box-shadow:inset 0 0 0 1px var(--accent)}
-button,.btn{border:0;border-radius:13px;padding:13px 17px;font-weight:850;cursor:pointer;background:var(--accent);color:white;font-size:14px}.btn-secondary{background:#253352;border:1px solid var(--line)}button:disabled{opacity:.55;cursor:not-allowed}
-.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:18px}.stat{background:#10182c;border-radius:14px;padding:14px}.stat b{display:block;font-size:22px}.stat span{font-size:12px;color:var(--muted)}
-.rank{display:flex;align-items:center;gap:14px}.rankicon{height:60px;width:60px;border-radius:18px;background:linear-gradient(135deg,#d2a4ff,#7566ff);display:grid;place-items:center;font-size:26px}.rank h2{margin:0 0 4px}.rank p{margin:0;font-size:13px}
-.sectionhead{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:28px 0 14px}.sectionhead h2{margin:0;font-size:20px}.grid{display:grid;grid-template-columns:1.1fr .9fr;gap:18px}.leader{width:100%;border-collapse:collapse}.leader td{padding:13px 5px;border-bottom:1px solid var(--line);font-size:14px}.leader td:last-child{text-align:right;font-weight:800}.place{color:var(--muted);width:34px}.you{color:var(--green);font-weight:800}.notice{border:1px solid #6b5eac;background:#211f43;padding:13px;border-radius:13px;color:#dcd8ff;font-size:13px;line-height:1.45}
-label{display:block;font-size:12px;color:var(--muted);margin:12px 0 6px}input,select{width:100%;background:#0d1528;color:var(--text);border:1px solid var(--line);padding:12px;border-radius:11px;font-size:15px}input::placeholder{color:#68799b}.row{display:flex;gap:10px}.row>*{flex:1}.status{margin-top:12px;font-size:13px;color:var(--green);min-height:18px}.foot{color:#7181a2;font-size:12px;text-align:center;margin:26px 0 6px}
-@media(max-width:760px){.wrap{padding:15px}.hero,.grid{grid-template-columns:1fr}.panel{padding:18px}.stats{gap:7px}.stat{padding:11px}.stat b{font-size:19px}.nav{margin-bottom:18px}.row{flex-direction:column}.sectionhead{margin-top:22px}}
+:root{--bg:#0b1020;--panel:#141c32;--panel2:#1b2743;--text:#f3f6ff;--muted:#9eaccb;--accent:#8b7cff;--green:#50e3a4;--line:#2b3858;--orange:#ffbc70}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 20% 0%,#1e2850 0,#0b1020 42%);font-family:Inter,system-ui,Arial,sans-serif;color:var(--text)}.wrap{max-width:1120px;margin:auto;padding:24px}.nav{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-bottom:25px;flex-wrap:wrap}.brand{font-weight:900;font-size:20px;letter-spacing:.3px}.brand span{color:var(--accent)}.pill{border:1px solid var(--line);padding:9px 13px;border-radius:999px;color:var(--muted);font-size:13px}.hero{display:grid;grid-template-columns:1.4fr 1fr;gap:18px}.panel{background:linear-gradient(145deg,rgba(27,39,67,.96),rgba(17,25,45,.96));border:1px solid var(--line);border-radius:22px;padding:22px;box-shadow:0 15px 40px #0002}h1{font-size:clamp(30px,5vw,48px);line-height:1.05;margin:10px 0 14px}h1 em{font-style:normal;color:var(--accent)}p{color:var(--muted);line-height:1.55;margin-top:0}.eyebrow{text-transform:uppercase;letter-spacing:2px;color:var(--green);font-size:11px;font-weight:800}.modes{display:flex;gap:10px;margin:20px 0 14px}.mode{flex:1;border:1px solid var(--line);background:#10182c;color:var(--muted);padding:14px;border-radius:14px;text-align:left;cursor:pointer;font-weight:800}.mode small{display:block;font-weight:500;margin-top:5px;color:var(--muted)}.mode.active{border-color:var(--accent);background:#292651;color:white;box-shadow:inset 0 0 0 1px var(--accent)}button,.btn{border:0;border-radius:13px;padding:13px 17px;font-weight:850;cursor:pointer;background:var(--accent);color:white;font-size:14px}.btn-secondary{background:#253352;border:1px solid var(--line)}button:disabled{opacity:.55;cursor:not-allowed}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:18px}.stat{background:#10182c;border-radius:14px;padding:14px}.stat b{display:block;font-size:22px}.stat span{font-size:12px;color:var(--muted)}.rank{display:flex;align-items:center;gap:14px}.rankicon{height:60px;width:60px;border-radius:18px;background:linear-gradient(135deg,#d2a4ff,#7566ff);display:grid;place-items:center;font-size:26px}.rank h2{margin:0 0 4px}.rank p{margin:0;font-size:13px}.sectionhead{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:28px 0 14px}.sectionhead h2{margin:0;font-size:20px}.grid{display:grid;grid-template-columns:1.1fr .9fr;gap:18px}.leader{width:100%;border-collapse:collapse}.leader td{padding:13px 5px;border-bottom:1px solid var(--line);font-size:14px}.leader td:last-child{text-align:right;font-weight:800}.place{color:var(--muted);width:34px}.notice{border:1px solid #6b5eac;background:#211f43;padding:13px;border-radius:13px;color:#dcd8ff;font-size:13px;line-height:1.45}label{display:block;font-size:12px;color:var(--muted);margin:12px 0 6px}input,select{width:100%;background:#0d1528;color:var(--text);border:1px solid var(--line);padding:12px;border-radius:11px;font-size:15px}input::placeholder{color:#68799b}.row{display:flex;gap:10px}.row>*{flex:1}.status{margin-top:12px;font-size:13px;color:var(--green);min-height:18px;line-height:1.5}.foot{color:#7181a2;font-size:12px;text-align:center;margin:26px 0 6px}.authgrid{display:grid;grid-template-columns:1fr 1fr;gap:18px}.hidden{display:none!important}.muted{color:var(--muted);font-size:12px}.accountline{display:flex;gap:10px;align-items:center;justify-content:space-between;flex-wrap:wrap}.danger{color:#ff9b9b}
+@media(max-width:760px){.wrap{padding:15px}.hero,.grid,.authgrid{grid-template-columns:1fr}.panel{padding:18px}.stats{gap:7px}.stat{padding:11px}.stat b{font-size:19px}.nav{margin-bottom:18px}.row{flex-direction:column}.sectionhead{margin-top:22px}}
 </style>
 </head>
 <body>
 <div class="wrap">
-  <header class="nav"><div class="brand">STUMBLE<span>COMP</span></div><div class="pill">COMMUNITY RANKED · PROTOTYPE</div></header>
-  <main>
-    <section class="hero">
-      <div class="panel">
-        <div class="eyebrow">Compete. Climb. Repeat.</div>
-        <h1>Următorul tău <em>rank</em><br>începe aici.</h1>
-        <p>Un hub comunitar pentru meciuri competitive Stumble Guys. Alege modul, intră în queue și joacă după reguli clare.</p>
-        <div class="modes">
-          <button class="mode active" id="solo" onclick="setMode('solo')">SOLO<small>Fiecare pentru el</small></button>
-          <button class="mode" id="duo" onclick="setMode('duo')">DUO<small>Joacă în echipă</small></button>
-        </div>
-        <label for="map">Preferință de hartă (prototip)</label>
-        <select id="map"><option>Random / map pool</option><option>Race</option><option>Elimination</option><option>Block Dash</option><option>Grand Prix</option></select>
-        <div class="row" style="margin-top:13px"><button id="queueBtn" onclick="queue()">Find Match</button><button class="btn-secondary" onclick="cancelQueue()">Cancel</button></div>
-        <div class="status" id="queueStatus" aria-live="polite">Alege Solo sau Duo pentru a începe.</div>
-        <div class="stats"><div class="stat"><b id="elo">1200</b><span>Current ELO</span></div><div class="stat"><b id="wins">18</b><span>Wins</span></div><div class="stat"><b id="wr">64%</b><span>Win rate</span></div></div>
-      </div>
-      <div class="panel">
-        <div class="rank"><div class="rankicon">◆</div><div><div class="eyebrow">Your rank</div><h2>Diamond I</h2><p>Example player · sample profile</p></div></div>
-        <div style="height:18px"></div>
-        <div class="notice"><b>Prototype mode:</b> butoanele simulează interfața. Nu creează camere reale și nu modifică ELO pe un server.</div>
-        <div class="sectionhead"><h2>Quick rules</h2></div>
-        <p style="margin-bottom:8px">• Joacă doar meciul înregistrat în site.</p><p style="margin-bottom:8px">• Codul camerei se distribuie după ce este creat în joc.</p><p style="margin-bottom:0">• Rezultatul se confirmă înainte de actualizarea ELO.</p>
-      </div>
-    </section>
-    <div class="sectionhead"><h2>Leaderboard</h2><div class="pill">Season 1 · Demo</div></div>
-    <section class="grid">
-      <div class="panel">
-        <table class="leader"><tbody>
-          <tr><td class="place">#1</td><td>CloudRunner</td><td>2,480</td></tr>
-          <tr><td class="place">#2</td><td>HexaJump</td><td>2,315</td></tr>
-          <tr><td class="place">#3</td><td>NeonDash</td><td>2,190</td></tr>
-          <tr><td class="place">#4</td><td>PixelPanda</td><td>2,040</td></tr>
-          <tr><td class="place">#5</td><td class="you">You (demo)</td><td>1,200</td></tr>
-        </tbody></table>
-      </div>
-      <div class="panel">
-        <h2 style="margin-top:0">Room & result</h2><p>Pas manual temporar până când putem confirma ce automatizare permite jocul.</p>
-        <label for="room">Room code</label><input id="room" placeholder="Introdu codul camerei din joc">
-        <label for="result">Rezultatul meciului</label><select id="result"><option value="">Selectează rezultatul</option><option value="win">Am câștigat</option><option value="top3">Am terminat în Top 3</option><option value="loss">Am pierdut</option></select>
-        <button style="width:100%;margin-top:12px" onclick="submitResult()">Submit result (demo)</button>
-        <div class="status" id="resultStatus" aria-live="polite"></div>
-      </div>
-    </section>
-  </main>
-  <div class="foot">Fan-made concept · Not affiliated with or endorsed by Scopely or Stumble Guys.</div>
+<header class="nav"><div class="brand">STUMBLE<span>GUYSRANKED</span></div><div class="pill" id="connectionBadge">ACCOUNT SYSTEM · SETUP REQUIRED</div></header>
+<main>
+<section class="panel" id="authPanel">
+  <div class="eyebrow">Player account</div><h2 style="margin:8px 0 6px">Intră în StumbleGuysRanked</h2><p>Înregistrează-te sau autentifică-te. Conturile sunt gestionate de Supabase.</p>
+  <div class="authgrid">
+    <div><h3>Cont nou</h3><label for="signupName">Username (3–20 caractere)</label><input id="signupName" autocomplete="username" minlength="3" maxlength="20" placeholder="ex. SpeedRunner"><label for="signupEmail">Email</label><input id="signupEmail" type="email" autocomplete="email" placeholder="tu@email.com"><label for="signupPassword">Parolă (minimum 8 caractere)</label><input id="signupPassword" type="password" autocomplete="new-password" minlength="8" placeholder="Alege o parolă sigură"><button id="signupBtn" style="width:100%;margin-top:14px" onclick="signUp()">Creează cont</button></div>
+    <div><h3>Am deja cont</h3><label for="loginEmail">Email</label><input id="loginEmail" type="email" autocomplete="email" placeholder="tu@email.com"><label for="loginPassword">Parolă</label><input id="loginPassword" type="password" autocomplete="current-password" placeholder="Parola contului"><button id="loginBtn" style="width:100%;margin-top:14px" onclick="signIn()">Autentificare</button><p class="muted" style="margin-top:12px">Dacă ai confirmarea emailului activată, verifică inboxul după înregistrare.</p></div>
+  </div><div class="status" id="authStatus" aria-live="polite"></div>
+</section>
+<section class="panel hidden" id="profilePanel" style="margin-top:18px">
+  <div class="accountline"><div><div class="eyebrow">Signed in</div><h2 id="welcomeTitle" style="margin:8px 0">Profilul tău</h2><p id="profileEmail" style="margin:0"></p></div><button class="btn-secondary" onclick="signOut()">Deconectare</button></div>
+  <div class="authgrid" style="margin-top:18px"><div><label for="profileUsername">Username</label><input id="profileUsername" minlength="3" maxlength="20"><button onclick="saveProfile()" style="margin-top:10px">Salvează username</button></div><div><label>Profil ID</label><div id="profileId" style="overflow-wrap:anywhere;color:var(--muted);font-size:12px"></div><p class="muted" style="margin-top:12px">ELO-ul și istoricul real vor fi adăugate după configurarea sigură a sistemului de meciuri.</p></div></div><div class="status" id="profileStatus" aria-live="polite"></div>
+</section>
+<section class="hero" style="margin-top:18px">
+  <div class="panel"><div class="eyebrow">Compete. Climb. Repeat.</div><h1>Următorul tău <em>rank</em><br>începe aici.</h1><p>Un hub comunitar pentru meciuri competitive Stumble Guys. Alege modul, intră în queue și joacă după reguli clare.</p><div class="modes"><button class="mode active" id="solo" onclick="setMode('solo')">SOLO<small>Fiecare pentru el</small></button><button class="mode" id="duo" onclick="setMode('duo')">DUO<small>Joacă în echipă</small></button></div><label for="map">Preferință de hartă (demo)</label><select id="map"><option>Random / map pool</option><option>Race</option><option>Elimination</option><option>Block Dash</option><option>Grand Prix</option></select><div class="row" style="margin-top:13px"><button id="queueBtn" onclick="queue()">Find Match</button><button class="btn-secondary" onclick="cancelQueue()">Cancel</button></div><div class="status" id="queueStatus" aria-live="polite">Autentifică-te pentru a continua. Matchmaking-ul este încă demo.</div><div class="stats"><div class="stat"><b>—</b><span>Solo ELO</span></div><div class="stat"><b>—</b><span>Duo ELO</span></div><div class="stat"><b>—</b><span>Wins</span></div></div></div>
+  <div class="panel"><div class="rank"><div class="rankicon">◆</div><div><div class="eyebrow">Your rank</div><h2>Unranked</h2><p id="rankSubtitle">Autentifică-te pentru a vedea profilul.</p></div></div><div style="height:18px"></div><div class="notice"><b>În dezvoltare:</b> conturile și username-ul se salvează prin Supabase. Queue, camerele și rezultatele nu sunt încă funcții competitive reale.</div><div class="sectionhead"><h2>Quick rules</h2></div><p style="margin-bottom:8px">• Joacă doar meciul înregistrat în site.</p><p style="margin-bottom:8px">• Codul camerei se distribuie după ce este creat în joc.</p><p style="margin-bottom:0">• Rezultatul se confirmă înainte de actualizarea ELO.</p></div>
+</section>
+<div class="sectionhead"><h2>Leaderboard</h2><div class="pill">Demo · fără date reale încă</div></div>
+<section class="grid"><div class="panel"><p>Clasamentul real va apărea aici după ce construim sistemul de meciuri și rating.</p><table class="leader"><tbody><tr><td class="place">—</td><td>Nu există încă rezultate verificate.</td><td>—</td></tr></tbody></table></div><div class="panel"><h2 style="margin-top:0">Room & result</h2><p>Pas manual temporar până când construim verificarea rezultatelor.</p><label for="room">Room code</label><input id="room" placeholder="Introdu codul camerei din joc"><label for="result">Rezultatul meciului</label><select id="result"><option value="">Selectează rezultatul</option><option value="win">Am câștigat</option><option value="top3">Am terminat în Top 3</option><option value="loss">Am pierdut</option></select><button style="width:100%;margin-top:12px" onclick="submitResult()">Submit result (demo)</button><div class="status" id="resultStatus" aria-live="polite"></div></div></section>
+</main><div class="foot">Fan-made concept · Not affiliated with or endorsed by Scopely or Stumble Guys.</div>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
-let mode='solo',queued=false;
-function setMode(m){mode=m;document.getElementById('solo').classList.toggle('active',m==='solo');document.getElementById('duo').classList.toggle('active',m==='duo');document.getElementById('queueStatus').textContent='Mod selectat: '+m.toUpperCase()+'.';}
-function queue(){queued=true;const map=document.getElementById('map').value;document.getElementById('queueStatus').textContent='Queue demo activată: '+mode.toUpperCase()+' · '+map+'. Matchmaking-ul real va necesita server și conturi.';document.getElementById('queueBtn').textContent='Searching…';}
-function cancelQueue(){queued=false;document.getElementById('queueStatus').textContent='Queue demo oprită.';document.getElementById('queueBtn').textContent='Find Match';}
-function submitResult(){const room=document.getElementById('room').value.trim(),result=document.getElementById('result').value;const el=document.getElementById('resultStatus');if(!room||!result){el.style.color='#ffbc70';el.textContent='Introdu codul camerei și selectează un rezultat.';return;}el.style.color='var(--green)';el.textContent='Rezultat demo înregistrat local pentru camera '+room+'. Nu s-a modificat ELO real.';}
+// PASUL URMATOR: inlocuieste cele doua valori de mai jos cu Project URL si Publishable key din Supabase.
+const SUPABASE_URL = 'https://iylwkxkvrxdxnhiqdtbj.supabase.co';
+const SUPABASE_PUBLISHABLE_KEY = 'sb_publishable_RCwOFqPd-XJnwICU7XEp6A_4x2xsrTV';
+let supabaseClient = null;
+let currentUser = null;
+let mode = 'solo';
+let queued = false;
+const byId = id => document.getElementById(id);
+function setStatus(id, message, isError=false){const el=byId(id);el.textContent=message;el.style.color=isError?'#ff9b9b':'var(--green)';}
+function initSupabase(){
+  if(!window.supabase){setStatus('authStatus','Nu s-a putut încărca biblioteca Supabase. Reîncarcă pagina.',true);return;}
+  if(SUPABASE_URL.includes('PASTE_') || SUPABASE_PUBLISHABLE_KEY.includes('PASTE_')){
+    byId('connectionBadge').textContent='SUPABASE · CONFIGURATION NEEDED';
+    setStatus('authStatus','Mai trebuie introduse Project URL și Publishable key în index.html.');return;
+  }
+  supabaseClient=window.supabase.createClient(SUPABASE_URL,SUPABASE_PUBLISHABLE_KEY);
+  byId('connectionBadge').textContent='SUPABASE · CONNECTED';
+  supabaseClient.auth.getSession().then(({data,error})=>{if(error){setStatus('authStatus',error.message,true);return;}if(data.session)loadProfile(data.session.user);});
+  supabaseClient.auth.onAuthStateChange((_event,session)=>{if(session)loadProfile(session.user);else showLoggedOut();});
+}
+async function signUp(){
+  if(!supabaseClient){setStatus('authStatus','Conexiunea Supabase nu este configurată încă.',true);return;}
+  const username=byId('signupName').value.trim(),email=byId('signupEmail').value.trim(),password=byId('signupPassword').value;
+  if(username.length<3||username.length>20){setStatus('authStatus','Username-ul trebuie să aibă între 3 și 20 de caractere.',true);return;}
+  if(!/^[a-zA-Z0-9_]+$/.test(username)){setStatus('authStatus','Folosește doar litere, cifre și underscore (_) în username.',true);return;}
+  if(password.length<8){setStatus('authStatus','Parola trebuie să aibă cel puțin 8 caractere.',true);return;}
+  byId('signupBtn').disabled=true;setStatus('authStatus','Se creează contul…');
+  try{const {data,error}=await supabaseClient.auth.signUp({email,password,options:{data:{username}}});if(error)throw error;if(data.session){await loadProfile(data.user);setStatus('authStatus','Cont creat și autentificat cu succes.');}else{setStatus('authStatus','Contul a fost creat. Verifică emailul pentru confirmare, apoi autentifică-te.');}}catch(e){setStatus('authStatus',friendlyError(e),true);}finally{byId('signupBtn').disabled=false;}
+}
+async function signIn(){
+  if(!supabaseClient){setStatus('authStatus','Conexiunea Supabase nu este configurată încă.',true);return;}
+  const email=byId('loginEmail').value.trim(),password=byId('loginPassword').value;
+  if(!email||!password){setStatus('authStatus','Introdu emailul și parola.',true);return;}
+  byId('loginBtn').disabled=true;setStatus('authStatus','Se verifică datele…');
+  try{const {data,error}=await supabaseClient.auth.signInWithPassword({email,password});if(error)throw error;await loadProfile(data.user);setStatus('authStatus','Autentificare reușită.');}catch(e){setStatus('authStatus',friendlyError(e),true);}finally{byId('loginBtn').disabled=false;}
+}
+function friendlyError(e){const m=(e&&e.message)||'A apărut o eroare.';if(m.toLowerCase().includes('user already registered'))return 'Există deja un cont cu acest email. Încearcă autentificarea.';if(m.toLowerCase().includes('invalid login credentials'))return 'Email sau parolă incorectă.';if(m.toLowerCase().includes('username'))return 'Username-ul este deja folosit sau nu respectă regulile.';return m;}
+async function loadProfile(user){
+  if(!supabaseClient||!user)return;currentUser=user;
+  byId('authPanel').classList.add('hidden');byId('profilePanel').classList.remove('hidden');byId('profileEmail').textContent=user.email||'';byId('profileId').textContent=user.id;byId('rankSubtitle').textContent='Autentificat: '+(user.email||'jucător');
+  const {data,error}=await supabaseClient.from('profiles').select('username,created_at').eq('id',user.id).maybeSingle();
+  if(error){setStatus('profileStatus','Contul este conectat, dar profilul nu s-a putut încărca: '+error.message,true);byId('welcomeTitle').textContent='Profilul tău';return;}
+  const name=data?.username||user.user_metadata?.username||'player_'+user.id.slice(0,8);byId('profileUsername').value=name;byId('welcomeTitle').textContent='Salut, '+name+'!';
+}
+async function saveProfile(){
+  if(!supabaseClient||!currentUser)return;const username=byId('profileUsername').value.trim();
+  if(username.length<3||username.length>20||!/^[a-zA-Z0-9_]+$/.test(username)){setStatus('profileStatus','Username-ul trebuie să aibă 3–20 caractere și doar litere, cifre sau _.',true);return;}
+  const {data,error}=await supabaseClient.from('profiles').update({username}).eq('id',currentUser.id).select('username').maybeSingle();
+  if(error){setStatus('profileStatus',friendlyError(error),true);return;}if(!data){setStatus('profileStatus','Profilul nu a fost modificat. Verifică permisiunile RLS.',true);return;}
+  byId('welcomeTitle').textContent='Salut, '+data.username+'!';setStatus('profileStatus','Username salvat.');
+}
+async function signOut(){if(!supabaseClient)return;const {error}=await supabaseClient.auth.signOut();if(error){setStatus('profileStatus',error.message,true);return;}showLoggedOut();setStatus('authStatus','Te-ai deconectat.');}
+function showLoggedOut(){currentUser=null;byId('profilePanel').classList.add('hidden');byId('authPanel').classList.remove('hidden');byId('welcomeTitle').textContent='Profilul tău';byId('rankSubtitle').textContent='Autentifică-te pentru a vedea profilul.';}
+function setMode(m){mode=m;byId('solo').classList.toggle('active',m==='solo');byId('duo').classList.toggle('active',m==='duo');byId('queueStatus').textContent='Mod selectat: '+m.toUpperCase()+'. Matchmaking-ul este încă demo.';}
+function queue(){if(!currentUser){byId('queueStatus').textContent='Autentifică-te pentru a continua. Matchmaking-ul este încă demo.';return;}queued=true;byId('queueStatus').textContent='Queue demo: '+mode.toUpperCase()+' · '+byId('map').value+'. Matchmaking-ul real nu este încă activ.';byId('queueBtn').textContent='Searching…';}
+function cancelQueue(){queued=false;byId('queueStatus').textContent='Queue demo oprită.';byId('queueBtn').textContent='Find Match';}
+function submitResult(){const room=byId('room').value.trim(),result=byId('result').value;if(!room||!result){setStatus('resultStatus','Introdu codul camerei și selectează un rezultat.',true);return;}setStatus('resultStatus','Rezultat demo pentru camera '+room+'. Nu s-a modificat ELO real.');}
+initSupabase();
 </script>
-</body>
-</html>
+</body></html>
