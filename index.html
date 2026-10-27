@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="ro">
+<html lang="en">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>StumbleGuysRanked — Competitive Hub</title>
@@ -14,27 +14,27 @@
 <header class="nav"><div class="brand">STUMBLE<span>GUYSRANKED</span></div><div class="pill" id="connectionBadge">ACCOUNT SYSTEM · SETUP REQUIRED</div></header>
 <main>
 <section class="panel" id="authPanel">
-  <div class="eyebrow">Player account</div><h2 style="margin:8px 0 6px">Intră în StumbleGuysRanked</h2><p>Înregistrează-te sau autentifică-te. Conturile sunt gestionate de Supabase.</p>
+  <div class="eyebrow">Player account</div><h2 style="margin:8px 0 6px">Welcome to StumbleGuysRanked</h2><p>Sign up or log in. Accounts are managed by Supabase.</p>
   <div class="authgrid">
-    <div><h3>Cont nou</h3><label for="signupName">Username (3–20 caractere)</label><input id="signupName" autocomplete="username" minlength="3" maxlength="20" placeholder="ex. SpeedRunner"><label for="signupEmail">Email</label><input id="signupEmail" type="email" autocomplete="email" placeholder="tu@email.com"><label for="signupPassword">Parolă (minimum 8 caractere)</label><input id="signupPassword" type="password" autocomplete="new-password" minlength="8" placeholder="Alege o parolă sigură"><button id="signupBtn" style="width:100%;margin-top:14px" onclick="signUp()">Creează cont</button></div>
-    <div><h3>Am deja cont</h3><label for="loginEmail">Email</label><input id="loginEmail" type="email" autocomplete="email" placeholder="tu@email.com"><label for="loginPassword">Parolă</label><input id="loginPassword" type="password" autocomplete="current-password" placeholder="Parola contului"><button id="loginBtn" style="width:100%;margin-top:14px" onclick="signIn()">Autentificare</button><p class="muted" style="margin-top:12px">Dacă ai confirmarea emailului activată, verifică inboxul după înregistrare.</p></div>
+    <div><h3>Create account</h3><label for="signupName">Username (3–20 characters)</label><input id="signupName" autocomplete="username" minlength="3" maxlength="20" placeholder="e.g. SpeedRunner"><label for="signupEmail">Email</label><input id="signupEmail" type="email" autocomplete="email" placeholder="you@example.com"><label for="signupPassword">Password (at least 8 characters)</label><input id="signupPassword" type="password" autocomplete="new-password" minlength="8" placeholder="Choose a secure password"><button id="signupBtn" style="width:100%;margin-top:14px" onclick="signUp()">Create account</button></div>
+    <div><h3>Already have an account</h3><label for="loginEmail">Email</label><input id="loginEmail" type="email" autocomplete="email" placeholder="you@example.com"><label for="loginPassword">Password</label><input id="loginPassword" type="password" autocomplete="current-password" placeholder="Your password"><button id="loginBtn" style="width:100%;margin-top:14px" onclick="signIn()">Log in</button><p class="muted" style="margin-top:12px">If email confirmation is enabled, check your inbox after signing up.</p></div>
   </div><div class="status" id="authStatus" aria-live="polite"></div>
 </section>
 <section class="panel hidden" id="profilePanel" style="margin-top:18px">
-  <div class="accountline"><div><div class="eyebrow">Signed in</div><h2 id="welcomeTitle" style="margin:8px 0">Profilul tău</h2><p id="profileEmail" style="margin:0"></p></div><button class="btn-secondary" onclick="signOut()">Deconectare</button></div>
-  <div class="authgrid" style="margin-top:18px"><div><label for="profileUsername">Username</label><input id="profileUsername" minlength="3" maxlength="20"><button onclick="saveProfile()" style="margin-top:10px">Salvează username</button></div><div><label>Profil ID</label><div id="profileId" style="overflow-wrap:anywhere;color:var(--muted);font-size:12px"></div><p class="muted" style="margin-top:12px">ELO-ul și istoricul real vor fi adăugate după configurarea sigură a sistemului de meciuri.</p></div></div><div class="status" id="profileStatus" aria-live="polite"></div>
+  <div class="accountline"><div><div class="eyebrow">Signed in</div><h2 id="welcomeTitle" style="margin:8px 0">Your profile</h2><p id="profileEmail" style="margin:0"></p></div><button class="btn-secondary" onclick="signOut()">Log out</button></div>
+  <div class="authgrid" style="margin-top:18px"><div><label for="profileUsername">Username</label><input id="profileUsername" minlength="3" maxlength="20"><button onclick="saveProfile()" style="margin-top:10px">Save username</button></div><div><label>Profile ID</label><div id="profileId" style="overflow-wrap:anywhere;color:var(--muted);font-size:12px"></div><p class="muted" style="margin-top:12px">Real ELO and match history will be added after the match system is configured securely.</p></div></div><div class="status" id="profileStatus" aria-live="polite"></div>
 </section>
 <section class="hero" style="margin-top:18px">
-  <div class="panel"><div class="eyebrow">Compete. Climb. Repeat.</div><h1>Următorul tău <em>rank</em><br>începe aici.</h1><p>Un hub comunitar pentru meciuri competitive Stumble Guys. Alege modul, intră în queue și joacă după reguli clare.</p><div class="modes"><button class="mode active" id="solo" onclick="setMode('solo')">SOLO<small>Fiecare pentru el</small></button><button class="mode" id="duo" onclick="setMode('duo')">DUO<small>Joacă în echipă</small></button></div><label for="map">Preferință de hartă (demo)</label><select id="map"><option>Random / map pool</option><option>Race</option><option>Elimination</option><option>Block Dash</option><option>Grand Prix</option></select><div class="row" style="margin-top:13px"><button id="queueBtn" onclick="queue()">Find Match</button><button class="btn-secondary" onclick="cancelQueue()">Cancel</button></div><div class="status" id="queueStatus" aria-live="polite">Autentifică-te pentru a continua. Matchmaking-ul este încă demo.</div><div class="stats"><div class="stat"><b>—</b><span>Solo ELO</span></div><div class="stat"><b>—</b><span>Duo ELO</span></div><div class="stat"><b>—</b><span>Wins</span></div></div></div>
-  <div class="panel"><div class="rank"><div class="rankicon">◆</div><div><div class="eyebrow">Your rank</div><h2>Unranked</h2><p id="rankSubtitle">Autentifică-te pentru a vedea profilul.</p></div></div><div style="height:18px"></div><div class="notice"><b>În dezvoltare:</b> conturile și username-ul se salvează prin Supabase. Queue, camerele și rezultatele nu sunt încă funcții competitive reale.</div><div class="sectionhead"><h2>Quick rules</h2></div><p style="margin-bottom:8px">• Joacă doar meciul înregistrat în site.</p><p style="margin-bottom:8px">• Codul camerei se distribuie după ce este creat în joc.</p><p style="margin-bottom:0">• Rezultatul se confirmă înainte de actualizarea ELO.</p></div>
+  <div class="panel"><div class="eyebrow">Compete. Climb. Repeat.</div><h1>Your next <em>rank</em><br>starts here.</h1><p>A community hub for competitive Stumble Guys matches. Choose a mode, join the queue, and play by clear rules.</p><div class="modes"><button class="mode active" id="solo" onclick="setMode('solo')">SOLO<small>Every player for themselves</small></button><button class="mode" id="duo" onclick="setMode('duo')">DUO<small>Play as a team</small></button></div><label for="map">Map preference (demo)</label><select id="map"><option>Random / map pool</option><option>Race</option><option>Elimination</option><option>Block Dash</option><option>Grand Prix</option></select><div class="row" style="margin-top:13px"><button id="queueBtn" onclick="queue()">Find Match</button><button class="btn-secondary" onclick="cancelQueue()">Cancel</button></div><div class="status" id="queueStatus" aria-live="polite">Log in to continue. Matchmaking is still a demo.</div><div class="stats"><div class="stat"><b>—</b><span>Solo ELO</span></div><div class="stat"><b>—</b><span>Duo ELO</span></div><div class="stat"><b>—</b><span>Wins</span></div></div></div>
+  <div class="panel"><div class="rank"><div class="rankicon">◆</div><div><div class="eyebrow">Your rank</div><h2>Unranked</h2><p id="rankSubtitle">Log in to view your profile.</p></div></div><div style="height:18px"></div><div class="notice"><b>In development:</b> accounts and usernames are saved through Supabase. Queues, rooms, and results are not yet real competitive features.</div><div class="sectionhead"><h2>Quick rules</h2></div><p style="margin-bottom:8px">• Only play the match registered on the website.</p><p style="margin-bottom:8px">• Share the room code after creating it in the game.</p><p style="margin-bottom:0">• Confirm the result before updating ELO.</p></div>
 </section>
-<div class="sectionhead"><h2>Leaderboard</h2><div class="pill">Demo · fără date reale încă</div></div>
-<section class="grid"><div class="panel"><p>Clasamentul real va apărea aici după ce construim sistemul de meciuri și rating.</p><table class="leader"><tbody><tr><td class="place">—</td><td>Nu există încă rezultate verificate.</td><td>—</td></tr></tbody></table></div><div class="panel"><h2 style="margin-top:0">Room & result</h2><p>Pas manual temporar până când construim verificarea rezultatelor.</p><label for="room">Room code</label><input id="room" placeholder="Introdu codul camerei din joc"><label for="result">Rezultatul meciului</label><select id="result"><option value="">Selectează rezultatul</option><option value="win">Am câștigat</option><option value="top3">Am terminat în Top 3</option><option value="loss">Am pierdut</option></select><button style="width:100%;margin-top:12px" onclick="submitResult()">Submit result (demo)</button><div class="status" id="resultStatus" aria-live="polite"></div></div></section>
+<div class="sectionhead"><h2>Leaderboard</h2><div class="pill">Demo · no real data yet</div></div>
+<section class="grid"><div class="panel"><p>The real leaderboard will appear here once the match and rating system is built.</p><table class="leader"><tbody><tr><td class="place">—</td><td>There are no verified results yet.</td><td>—</td></tr></tbody></table></div><div class="panel"><h2 style="margin-top:0">Room & result</h2><p>A temporary manual process until result verification is built.</p><label for="room">Room code</label><input id="room" placeholder="Enter the in-game room code"><label for="result">Match result</label><select id="result"><option value="">Select a result</option><option value="win">Won</option><option value="top3">Finished in the Top 3</option><option value="loss">Lost</option></select><button style="width:100%;margin-top:12px" onclick="submitResult()">Submit result (demo)</button><div class="status" id="resultStatus" aria-live="polite"></div></div></section>
 </main><div class="foot">Fan-made concept · Not affiliated with or endorsed by Scopely or Stumble Guys.</div>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
-// PASUL URMATOR: inlocuieste cele doua valori de mai jos cu Project URL si Publishable key din Supabase.
+// NEXT STEP: replace the two values below with your Supabase Project URL and Publishable key.
 const SUPABASE_URL = 'https://iylwkxkvrxdxnhiqdtbj.supabase.co';
 const SUPABASE_PUBLISHABLE_KEY = 'sb_publishable_RCwOFqPd-XJnwICU7XEp6A_4x2xsrTV';
 let supabaseClient = null;
@@ -44,10 +44,10 @@ let queued = false;
 const byId = id => document.getElementById(id);
 function setStatus(id, message, isError=false){const el=byId(id);el.textContent=message;el.style.color=isError?'#ff9b9b':'var(--green)';}
 function initSupabase(){
-  if(!window.supabase){setStatus('authStatus','Nu s-a putut încărca biblioteca Supabase. Reîncarcă pagina.',true);return;}
+  if(!window.supabase){setStatus('authStatus','Could not load the Supabase library. Refresh the page.',true);return;}
   if(SUPABASE_URL.includes('PASTE_') || SUPABASE_PUBLISHABLE_KEY.includes('PASTE_')){
     byId('connectionBadge').textContent='SUPABASE · CONFIGURATION NEEDED';
-    setStatus('authStatus','Mai trebuie introduse Project URL și Publishable key în index.html.');return;
+    setStatus('authStatus','Add the Project URL and Publishable key to index.html.');return;
   }
   supabaseClient=window.supabase.createClient(SUPABASE_URL,SUPABASE_PUBLISHABLE_KEY);
   byId('connectionBadge').textContent='SUPABASE · CONNECTED';
@@ -55,42 +55,42 @@ function initSupabase(){
   supabaseClient.auth.onAuthStateChange((_event,session)=>{if(session)loadProfile(session.user);else showLoggedOut();});
 }
 async function signUp(){
-  if(!supabaseClient){setStatus('authStatus','Conexiunea Supabase nu este configurată încă.',true);return;}
+  if(!supabaseClient){setStatus('authStatus','Supabase is not configured yet.',true);return;}
   const username=byId('signupName').value.trim(),email=byId('signupEmail').value.trim(),password=byId('signupPassword').value;
-  if(username.length<3||username.length>20){setStatus('authStatus','Username-ul trebuie să aibă între 3 și 20 de caractere.',true);return;}
-  if(!/^[a-zA-Z0-9_]+$/.test(username)){setStatus('authStatus','Folosește doar litere, cifre și underscore (_) în username.',true);return;}
-  if(password.length<8){setStatus('authStatus','Parola trebuie să aibă cel puțin 8 caractere.',true);return;}
-  byId('signupBtn').disabled=true;setStatus('authStatus','Se creează contul…');
-  try{const {data,error}=await supabaseClient.auth.signUp({email,password,options:{data:{username}}});if(error)throw error;if(data.session){await loadProfile(data.user);setStatus('authStatus','Cont creat și autentificat cu succes.');}else{setStatus('authStatus','Contul a fost creat. Verifică emailul pentru confirmare, apoi autentifică-te.');}}catch(e){setStatus('authStatus',friendlyError(e),true);}finally{byId('signupBtn').disabled=false;}
+  if(username.length<3||username.length>20){setStatus('authStatus','Username must be between 3 and 20 characters.',true);return;}
+  if(!/^[a-zA-Z0-9_]+$/.test(username)){setStatus('authStatus','Use only letters, numbers, and underscores (_) in your username.',true);return;}
+  if(password.length<8){setStatus('authStatus','Password must be at least 8 characters long.',true);return;}
+  byId('signupBtn').disabled=true;setStatus('authStatus','Creating account…');
+  try{const {data,error}=await supabaseClient.auth.signUp({email,password,options:{data:{username}}});if(error)throw error;if(data.session){await loadProfile(data.user);setStatus('authStatus','Account created and logged in successfully.');}else{setStatus('authStatus','Account created. Check your email to confirm it, then log in.');}}catch(e){setStatus('authStatus',friendlyError(e),true);}finally{byId('signupBtn').disabled=false;}
 }
 async function signIn(){
-  if(!supabaseClient){setStatus('authStatus','Conexiunea Supabase nu este configurată încă.',true);return;}
+  if(!supabaseClient){setStatus('authStatus','Supabase is not configured yet.',true);return;}
   const email=byId('loginEmail').value.trim(),password=byId('loginPassword').value;
-  if(!email||!password){setStatus('authStatus','Introdu emailul și parola.',true);return;}
-  byId('loginBtn').disabled=true;setStatus('authStatus','Se verifică datele…');
-  try{const {data,error}=await supabaseClient.auth.signInWithPassword({email,password});if(error)throw error;await loadProfile(data.user);setStatus('authStatus','Autentificare reușită.');}catch(e){setStatus('authStatus',friendlyError(e),true);}finally{byId('loginBtn').disabled=false;}
+  if(!email||!password){setStatus('authStatus','Enter your email and password.',true);return;}
+  byId('loginBtn').disabled=true;setStatus('authStatus','Checking your details…');
+  try{const {data,error}=await supabaseClient.auth.signInWithPassword({email,password});if(error)throw error;await loadProfile(data.user);setStatus('authStatus','Logged in successfully.');}catch(e){setStatus('authStatus',friendlyError(e),true);}finally{byId('loginBtn').disabled=false;}
 }
-function friendlyError(e){const m=(e&&e.message)||'A apărut o eroare.';if(m.toLowerCase().includes('user already registered'))return 'Există deja un cont cu acest email. Încearcă autentificarea.';if(m.toLowerCase().includes('invalid login credentials'))return 'Email sau parolă incorectă.';if(m.toLowerCase().includes('username'))return 'Username-ul este deja folosit sau nu respectă regulile.';return m;}
+function friendlyError(e){const m=(e&&e.message)||'Something went wrong.';if(m.toLowerCase().includes('user already registered'))return 'An account with this email already exists. Try logging in.';if(m.toLowerCase().includes('invalid login credentials'))return 'Incorrect email or password.';if(m.toLowerCase().includes('username'))return 'That username is already taken or does not meet the requirements.';return m;}
 async function loadProfile(user){
   if(!supabaseClient||!user)return;currentUser=user;
-  byId('authPanel').classList.add('hidden');byId('profilePanel').classList.remove('hidden');byId('profileEmail').textContent=user.email||'';byId('profileId').textContent=user.id;byId('rankSubtitle').textContent='Autentificat: '+(user.email||'jucător');
+  byId('authPanel').classList.add('hidden');byId('profilePanel').classList.remove('hidden');byId('profileEmail').textContent=user.email||'';byId('profileId').textContent=user.id;byId('rankSubtitle').textContent='Signed in: '+(user.email||'player');
   const {data,error}=await supabaseClient.from('profiles').select('username,created_at').eq('id',user.id).maybeSingle();
-  if(error){setStatus('profileStatus','Contul este conectat, dar profilul nu s-a putut încărca: '+error.message,true);byId('welcomeTitle').textContent='Profilul tău';return;}
-  const name=data?.username||user.user_metadata?.username||'player_'+user.id.slice(0,8);byId('profileUsername').value=name;byId('welcomeTitle').textContent='Salut, '+name+'!';
+  if(error){setStatus('profileStatus','Your account is connected, but the profile could not be loaded: '+error.message,true);byId('welcomeTitle').textContent='Your profile';return;}
+  const name=data?.username||user.user_metadata?.username||'player_'+user.id.slice(0,8);byId('profileUsername').value=name;byId('welcomeTitle').textContent='Welcome, '+name+'!';
 }
 async function saveProfile(){
   if(!supabaseClient||!currentUser)return;const username=byId('profileUsername').value.trim();
-  if(username.length<3||username.length>20||!/^[a-zA-Z0-9_]+$/.test(username)){setStatus('profileStatus','Username-ul trebuie să aibă 3–20 caractere și doar litere, cifre sau _.',true);return;}
+  if(username.length<3||username.length>20||!/^[a-zA-Z0-9_]+$/.test(username)){setStatus('profileStatus','Username must be 3–20 characters and contain only letters, numbers, or underscores.',true);return;}
   const {data,error}=await supabaseClient.from('profiles').update({username}).eq('id',currentUser.id).select('username').maybeSingle();
-  if(error){setStatus('profileStatus',friendlyError(error),true);return;}if(!data){setStatus('profileStatus','Profilul nu a fost modificat. Verifică permisiunile RLS.',true);return;}
-  byId('welcomeTitle').textContent='Salut, '+data.username+'!';setStatus('profileStatus','Username salvat.');
+  if(error){setStatus('profileStatus',friendlyError(error),true);return;}if(!data){setStatus('profileStatus','Profile was not updated. Check the RLS permissions.',true);return;}
+  byId('welcomeTitle').textContent='Welcome, '+data.username+'!';setStatus('profileStatus','Username saved.');
 }
-async function signOut(){if(!supabaseClient)return;const {error}=await supabaseClient.auth.signOut();if(error){setStatus('profileStatus',error.message,true);return;}showLoggedOut();setStatus('authStatus','Te-ai deconectat.');}
-function showLoggedOut(){currentUser=null;byId('profilePanel').classList.add('hidden');byId('authPanel').classList.remove('hidden');byId('welcomeTitle').textContent='Profilul tău';byId('rankSubtitle').textContent='Autentifică-te pentru a vedea profilul.';}
-function setMode(m){mode=m;byId('solo').classList.toggle('active',m==='solo');byId('duo').classList.toggle('active',m==='duo');byId('queueStatus').textContent='Mod selectat: '+m.toUpperCase()+'. Matchmaking-ul este încă demo.';}
-function queue(){if(!currentUser){byId('queueStatus').textContent='Autentifică-te pentru a continua. Matchmaking-ul este încă demo.';return;}queued=true;byId('queueStatus').textContent='Queue demo: '+mode.toUpperCase()+' · '+byId('map').value+'. Matchmaking-ul real nu este încă activ.';byId('queueBtn').textContent='Searching…';}
-function cancelQueue(){queued=false;byId('queueStatus').textContent='Queue demo oprită.';byId('queueBtn').textContent='Find Match';}
-function submitResult(){const room=byId('room').value.trim(),result=byId('result').value;if(!room||!result){setStatus('resultStatus','Introdu codul camerei și selectează un rezultat.',true);return;}setStatus('resultStatus','Rezultat demo pentru camera '+room+'. Nu s-a modificat ELO real.');}
+async function signOut(){if(!supabaseClient)return;const {error}=await supabaseClient.auth.signOut();if(error){setStatus('profileStatus',error.message,true);return;}showLoggedOut();setStatus('authStatus','You have logged out.');}
+function showLoggedOut(){currentUser=null;byId('profilePanel').classList.add('hidden');byId('authPanel').classList.remove('hidden');byId('welcomeTitle').textContent='Your profile';byId('rankSubtitle').textContent='Log in to view your profile.';}
+function setMode(m){mode=m;byId('solo').classList.toggle('active',m==='solo');byId('duo').classList.toggle('active',m==='duo');byId('queueStatus').textContent='Selected mode: '+m.toUpperCase()+'. Matchmaking is still a demo.';}
+function queue(){if(!currentUser){byId('queueStatus').textContent='Log in to continue. Matchmaking is still a demo.';return;}queued=true;byId('queueStatus').textContent='Demo queue: '+mode.toUpperCase()+' · '+byId('map').value+'. Real matchmaking is not active yet.';byId('queueBtn').textContent='Searching…';}
+function cancelQueue(){queued=false;byId('queueStatus').textContent='Demo queue cancelled.';byId('queueBtn').textContent='Find Match';}
+function submitResult(){const room=byId('room').value.trim(),result=byId('result').value;if(!room||!result){setStatus('resultStatus','Enter the room code and select a result.',true);return;}setStatus('resultStatus','Demo result for room '+room+'. No real ELO was changed.');}
 initSupabase();
 </script>
 </body></html>
