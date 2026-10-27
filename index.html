@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="ro">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Stumble Competitive — Prototype</title>
+<style>
+:root{--bg:#0b1020;--panel:#141c32;--panel2:#1b2743;--text:#f3f6ff;--muted:#9eaccb;--accent:#8b7cff;--green:#50e3a4;--line:#2b3858}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 20% 0%,#1e2850 0,#0b1020 42%);font-family:Inter,system-ui,Arial,sans-serif;color:var(--text)}
+.wrap{max-width:1120px;margin:auto;padding:24px}.nav{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-bottom:30px}.brand{font-weight:900;font-size:20px;letter-spacing:.3px}.brand span{color:var(--accent)}.pill{border:1px solid var(--line);padding:9px 13px;border-radius:999px;color:var(--muted);font-size:13px}
+.hero{display:grid;grid-template-columns:1.4fr 1fr;gap:18px}.panel{background:linear-gradient(145deg,rgba(27,39,67,.96),rgba(17,25,45,.96));border:1px solid var(--line);border-radius:22px;padding:22px;box-shadow:0 15px 40px #0002}
+h1{font-size:clamp(30px,5vw,48px);line-height:1.05;margin:10px 0 14px}h1 em{font-style:normal;color:var(--accent)}p{color:var(--muted);line-height:1.55;margin-top:0}.eyebrow{text-transform:uppercase;letter-spacing:2px;color:var(--green);font-size:11px;font-weight:800}
+.modes{display:flex;gap:10px;margin:20px 0 14px}.mode{flex:1;border:1px solid var(--line);background:#10182c;color:var(--muted);padding:14px;border-radius:14px;text-align:left;cursor:pointer;font-weight:800}.mode small{display:block;font-weight:500;margin-top:5px;color:var(--muted)}.mode.active{border-color:var(--accent);background:#292651;color:white;box-shadow:inset 0 0 0 1px var(--accent)}
+button,.btn{border:0;border-radius:13px;padding:13px 17px;font-weight:850;cursor:pointer;background:var(--accent);color:white;font-size:14px}.btn-secondary{background:#253352;border:1px solid var(--line)}button:disabled{opacity:.55;cursor:not-allowed}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:18px}.stat{background:#10182c;border-radius:14px;padding:14px}.stat b{display:block;font-size:22px}.stat span{font-size:12px;color:var(--muted)}
+.rank{display:flex;align-items:center;gap:14px}.rankicon{height:60px;width:60px;border-radius:18px;background:linear-gradient(135deg,#d2a4ff,#7566ff);display:grid;place-items:center;font-size:26px}.rank h2{margin:0 0 4px}.rank p{margin:0;font-size:13px}
+.sectionhead{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:28px 0 14px}.sectionhead h2{margin:0;font-size:20px}.grid{display:grid;grid-template-columns:1.1fr .9fr;gap:18px}.leader{width:100%;border-collapse:collapse}.leader td{padding:13px 5px;border-bottom:1px solid var(--line);font-size:14px}.leader td:last-child{text-align:right;font-weight:800}.place{color:var(--muted);width:34px}.you{color:var(--green);font-weight:800}.notice{border:1px solid #6b5eac;background:#211f43;padding:13px;border-radius:13px;color:#dcd8ff;font-size:13px;line-height:1.45}
+label{display:block;font-size:12px;color:var(--muted);margin:12px 0 6px}input,select{width:100%;background:#0d1528;color:var(--text);border:1px solid var(--line);padding:12px;border-radius:11px;font-size:15px}input::placeholder{color:#68799b}.row{display:flex;gap:10px}.row>*{flex:1}.status{margin-top:12px;font-size:13px;color:var(--green);min-height:18px}.foot{color:#7181a2;font-size:12px;text-align:center;margin:26px 0 6px}
+@media(max-width:760px){.wrap{padding:15px}.hero,.grid{grid-template-columns:1fr}.panel{padding:18px}.stats{gap:7px}.stat{padding:11px}.stat b{font-size:19px}.nav{margin-bottom:18px}.row{flex-direction:column}.sectionhead{margin-top:22px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="nav"><div class="brand">STUMBLE<span>COMP</span></div><div class="pill">COMMUNITY RANKED · PROTOTYPE</div></header>
+  <main>
+    <section class="hero">
+      <div class="panel">
+        <div class="eyebrow">Compete. Climb. Repeat.</div>
+        <h1>Următorul tău <em>rank</em><br>începe aici.</h1>
+        <p>Un hub comunitar pentru meciuri competitive Stumble Guys. Alege modul, intră în queue și joacă după reguli clare.</p>
+        <div class="modes">
+          <button class="mode active" id="solo" onclick="setMode('solo')">SOLO<small>Fiecare pentru el</small></button>
+          <button class="mode" id="duo" onclick="setMode('duo')">DUO<small>Joacă în echipă</small></button>
+        </div>
+        <label for="map">Preferință de hartă (prototip)</label>
+        <select id="map"><option>Random / map pool</option><option>Race</option><option>Elimination</option><option>Block Dash</option><option>Grand Prix</option></select>
+        <div class="row" style="margin-top:13px"><button id="queueBtn" onclick="queue()">Find Match</button><button class="btn-secondary" onclick="cancelQueue()">Cancel</button></div>
+        <div class="status" id="queueStatus" aria-live="polite">Alege Solo sau Duo pentru a începe.</div>
+        <div class="stats"><div class="stat"><b id="elo">1200</b><span>Current ELO</span></div><div class="stat"><b id="wins">18</b><span>Wins</span></div><div class="stat"><b id="wr">64%</b><span>Win rate</span></div></div>
+      </div>
+      <div class="panel">
+        <div class="rank"><div class="rankicon">◆</div><div><div class="eyebrow">Your rank</div><h2>Diamond I</h2><p>Example player · sample profile</p></div></div>
+        <div style="height:18px"></div>
+        <div class="notice"><b>Prototype mode:</b> butoanele simulează interfața. Nu creează camere reale și nu modifică ELO pe un server.</div>
+        <div class="sectionhead"><h2>Quick rules</h2></div>
+        <p style="margin-bottom:8px">• Joacă doar meciul înregistrat în site.</p><p style="margin-bottom:8px">• Codul camerei se distribuie după ce este creat în joc.</p><p style="margin-bottom:0">• Rezultatul se confirmă înainte de actualizarea ELO.</p>
+      </div>
+    </section>
+    <div class="sectionhead"><h2>Leaderboard</h2><div class="pill">Season 1 · Demo</div></div>
+    <section class="grid">
+      <div class="panel">
+        <table class="leader"><tbody>
+          <tr><td class="place">#1</td><td>CloudRunner</td><td>2,480</td></tr>
+          <tr><td class="place">#2</td><td>HexaJump</td><td>2,315</td></tr>
+          <tr><td class="place">#3</td><td>NeonDash</td><td>2,190</td></tr>
+          <tr><td class="place">#4</td><td>PixelPanda</td><td>2,040</td></tr>
+          <tr><td class="place">#5</td><td class="you">You (demo)</td><td>1,200</td></tr>
+        </tbody></table>
+      </div>
+      <div class="panel">
+        <h2 style="margin-top:0">Room & result</h2><p>Pas manual temporar până când putem confirma ce automatizare permite jocul.</p>
+        <label for="room">Room code</label><input id="room" placeholder="Introdu codul camerei din joc">
+        <label for="result">Rezultatul meciului</label><select id="result"><option value="">Selectează rezultatul</option><option value="win">Am câștigat</option><option value="top3">Am terminat în Top 3</option><option value="loss">Am pierdut</option></select>
+        <button style="width:100%;margin-top:12px" onclick="submitResult()">Submit result (demo)</button>
+        <div class="status" id="resultStatus" aria-live="polite"></div>
+      </div>
+    </section>
+  </main>
+  <div class="foot">Fan-made concept · Not affiliated with or endorsed by Scopely or Stumble Guys.</div>
+</div>
+<script>
+let mode='solo',queued=false;
+function setMode(m){mode=m;document.getElementById('solo').classList.toggle('active',m==='solo');document.getElementById('duo').classList.toggle('active',m==='duo');document.getElementById('queueStatus').textContent='Mod selectat: '+m.toUpperCase()+'.';}
+function queue(){queued=true;const map=document.getElementById('map').value;document.getElementById('queueStatus').textContent='Queue demo activată: '+mode.toUpperCase()+' · '+map+'. Matchmaking-ul real va necesita server și conturi.';document.getElementById('queueBtn').textContent='Searching…';}
+function cancelQueue(){queued=false;document.getElementById('queueStatus').textContent='Queue demo oprită.';document.getElementById('queueBtn').textContent='Find Match';}
+function submitResult(){const room=document.getElementById('room').value.trim(),result=document.getElementById('result').value;const el=document.getElementById('resultStatus');if(!room||!result){el.style.color='#ffbc70';el.textContent='Introdu codul camerei și selectează un rezultat.';return;}el.style.color='var(--green)';el.textContent='Rezultat demo înregistrat local pentru camera '+room+'. Nu s-a modificat ELO real.';}
+</script>
+</body>
+</html>
